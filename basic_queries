@@ -1,0 +1,10 @@
+uses neo4j database
+
+
+note: not everything is case sensitive, but the values are. ie: User, Computer and the useername (username is all caps)
+
+MATCH (n:User),(m:Computer), (n)-[r:AdminTo]->(m) WHERE n.name STARTS WITH 'USER' AND NOT n.name='' WITH n, count(r) as rel_count order by rel_count desc LIMIT 10 MATCH (m)<-[r:AdminTo]-(n) RETURN n,r,m
+
+
+
+MATCH (n:User),(m:Computer), (n)-[r:AdminTo]->(m) WHERE n.name STARTS WITH 'USER' MATCH(m)<-[r:AdminTo]-(n) RETURN n,r,m
